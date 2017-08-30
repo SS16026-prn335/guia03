@@ -32,16 +32,16 @@ public class UtilitiesTest {
     @Test
     public void probarMetodogetResume() {
         String fraseEsperada = "Bienvenidos a la mat";
-        
-        String resultado = servicio.getResume(fraseEsperada);
+        String fraseCompleta="Bienvenidos a la materia de programacion 3 donde nos estan violando";
+        String resultado = servicio.getResume(fraseCompleta);
         Assert.assertEquals(fraseEsperada, resultado);
     }
     
     @Test
     public void probarMetodoCapitalizar() {
         String fraseEsperada2 = "Pruebas De Unidad Con Unit & Arquillian";
-        
-        String resultado = servicio.capitalizar(fraseEsperada2);
+        String texto="pruebas de unidad con unit & arquillian";
+        String resultado = servicio.capitalizar(texto);
         Assert.assertEquals(fraseEsperada2, resultado);
     }
     

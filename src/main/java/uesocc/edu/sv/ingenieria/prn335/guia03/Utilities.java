@@ -22,7 +22,6 @@ public class Utilities implements Serializable{
     public String getResume(String texto) {
        char caracter=' ';
        String frase="";
-        String fraseCompleta="Bienvenidos a la materia de programacion 3 donde nos estan violando";
         for(int i=0; i<20; i++){
             caracter=texto.charAt(i);
             frase+=caracter;
@@ -35,17 +34,31 @@ public class Utilities implements Serializable{
      * @return El texto que se ha recibido con cada palabra capitalizada y sin dobles espacios.
      */
     public String capitalizar(String texto) {
-        texto="pruebas de unidad con unit & arquillian";
+        int cont = 0;
+        String frase = "";
+
         char[] caracteres = texto.toCharArray();
+        // for pasando por todas las letras
         for (int i = 0; i < texto.length(); i++) {
+            //la primera letra es mayuscula
             caracteres[0] = Character.toUpperCase(caracteres[0]);
+            // Reemplazamos por mayuscula
             if (caracteres[i] == ' ') {
-                caracteres[i + 1] = Character.toUpperCase(caracteres[i + 1]);
+                int p = i;
+                cont = 0;
+                while (caracteres[(p)] == ' ') {
+                    p++;
+                    cont += 1;
+                }
+                if (cont >= 2) {
+                    continue;
+                } else {
+                    caracteres[i + cont] = Character.toUpperCase(caracteres[i + cont]);
+                }
             }
+            frase += caracteres[i];
         }
-        texto = String.valueOf(caracteres);
-        texto = (texto.replace("  ", " "));
-        return texto;
+        return frase;
     }
     
     /**

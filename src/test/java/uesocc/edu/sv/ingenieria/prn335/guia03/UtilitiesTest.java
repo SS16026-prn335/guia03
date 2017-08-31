@@ -20,8 +20,8 @@ public class UtilitiesTest {
     @Deployment
     public static WebArchive desplegar() {
         WebArchive salida = ShrinkWrap.create(WebArchive.class)
-                .addClass(Utilities.class)
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+        .addClass(Utilities.class)
+        .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
         System.out.println(salida.toString(true));
         return salida;
     }
@@ -31,25 +31,26 @@ public class UtilitiesTest {
 
     @Test
     public void probarMetodogetResume() {
-        String fraseEsperada = "Bienvenidos a la mat";
-        String fraseCompleta="Bienvenidos a la materia de programacion 3 donde nos estan violando";
+        String fraseEsperada1 = "Bienvenidos a la mat";
+        String fraseCompleta="Bienvenidos a la materia de Programación 3 Ciclo II 2017.";
         String resultado = servicio.getResume(fraseCompleta);
-        Assert.assertEquals(fraseEsperada, resultado);
+        Assert.assertEquals(fraseEsperada1, resultado);
     }
     
     @Test
     public void probarMetodoCapitalizar() {
-        String fraseEsperada2 = "Pruebas De Unidad Con Unit & Arquillian";
-        String texto="pruebas de unidad con unit & arquillian";
+        String fraseEsperada2="Pruebas De Unidad Con Junit & Arquillian";
+        String texto="prueBas de UNIDAD con JUnit & arQuillian";
         String resultado = servicio.capitalizar(texto);
         Assert.assertEquals(fraseEsperada2, resultado);
     }
     
-        @Test
-    public void probarMetodoContar() {
-        int fraseEsperada3= 1;
-        String frase="materia";
-        int resultado = servicio.contarCoincidencias(frase, frase);
+    @Test
+    public void probarMetodoContarCoincidencias() {
+        int fraseEsperada3=1;
+        String frase="2017";
+        String Cadena = "Bienvenidos a la materia de Programación 3 Ciclo II 2017.";
+        int resultado = servicio.contarCoincidencias(Cadena, frase);
         Assert.assertEquals(fraseEsperada3, resultado);
     }
     

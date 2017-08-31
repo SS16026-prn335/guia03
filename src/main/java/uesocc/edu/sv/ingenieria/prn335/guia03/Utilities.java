@@ -15,7 +15,7 @@ import javax.enterprise.context.Dependent;
 public class Utilities implements Serializable{
     
     /**
-     * 
+     * Selecciona y devuelva los primeros 20 caracteres de un texto
      * @param texto Cadena de texto que contiene la introducción de un determinado post.
      * @return Las primeras 20 letras del texto recibido.
      */
@@ -29,20 +29,28 @@ public class Utilities implements Serializable{
          return frase;
     }
     /**
-     * 
+     * Convierte la primera letra de cada palabra a mayúscula y las restantes en minúsculas, ademas elimina los dobles espacios
      * @param texto Cadena de texto que contiene el título de un determinado post.
      * @return El texto que se ha recibido con cada palabra capitalizada y sin dobles espacios.
      */
     public String capitalizar(String texto) {
         int cont = 0;
         String frase = "";
-
         char[] caracteres = texto.toCharArray();
-        // for pasando por todas las letras
+       
+        for (int i = 0; i < texto.length(); i++) {
+            caracteres[i]=Character.toLowerCase(caracteres[i]);
+            if  (caracteres[i] == ' '){
+            caracteres[i + 1] = Character.toLowerCase(caracteres[i + 1]);
+            }
+            }
+        
         for (int i = 0; i < texto.length(); i++) {
             //la primera letra es mayuscula
             caracteres[0] = Character.toUpperCase(caracteres[0]);
             // Reemplazamos por mayuscula
+            if (i!=0) {
+            }
             if (caracteres[i] == ' ') {
                 int p = i;
                 cont = 0;
@@ -62,14 +70,12 @@ public class Utilities implements Serializable{
     }
     
     /**
-     * 
+     * Cuenta la cantidad de veces que se repite una palabra en una cadena de texto
      * @param frase cadena de texto que contiene la frase a buscar.
      * @param cadena cadena de texto donde se buscaran las coincidencias.
      * @return La cantidad de coincidencias de la frase en el texto recibido.
      */
-    public int contarCoincidencias(String cadena, String frase) {   
-    String Cadena = "Bienvenidos a la materia de programacion 3 del ciclo II 2017";
-    frase = "materia";
+    public int contarCoincidencias(String Cadena, String frase) {   
     int i = 0,contador = 0;
     while (i != -1){
     i = Cadena.indexOf(frase,i);

@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 
 /**
  *
- * @author juanca
+ * @author jcsantos
  */
 @RunWith(Arquillian.class)
 public class UtilitiesTest {
@@ -30,29 +30,99 @@ public class UtilitiesTest {
     private Utilities servicio;
 
     @Test
-    public void probarMetodogetResume() {
-        String fraseEsperada1 = "Bienvenidos a la mat";
-        String fraseCompleta="Bienvenidos a la materia de Programación 3 Ciclo II 2017.";
-        String resultado = servicio.getResume(fraseCompleta);
-        Assert.assertEquals(fraseEsperada1, resultado);
+   public void probarGetResume() {
+        System.out.println("getResume prueba 1");
+        String texto = "Bienvenidos a la materia de Programación 3 Ciclo II 2017 ";
+        String textoEsperado = "Bienvenidos a la mat";
+        String resultado = servicio.getResume(texto);
+        Assert.assertEquals(textoEsperado, resultado);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
     }
-    
+      @Test
+   public void probarGetResume2() {
+        System.out.println("getResume prueba 2");
+        String texto = "Hola mundo!";
+        String textoEsperado = "Hola mundo!";
+        String resultado = servicio.getResume(texto);
+        Assert.assertEquals(textoEsperado, resultado);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+      @Test
+   public void probarGetResume3() {
+        System.out.println("getResume prueba 3");
+        String texto = null;
+        String textoEsperado = null;
+        String resultado = servicio.getResume(texto);
+        Assert.assertEquals(textoEsperado, resultado);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+   
     @Test
-    public void probarMetodoCapitalizar() {
-        String fraseEsperada2="Pruebas De Unidad Con Junit & Arquillian";
-        String texto="prueBas de UNIDAD con JUnit & arQuillian";
+    public void pruebaCapitalizar() {
+        System.out.println("capitalizar prueba 1");
+        String texto = "prueBas  de UNIDAD   con  JUnit  & arQuillian";//
+        String textoEsperado = "Pruebas De Unidad Con Junit & Arquillian";
         String resultado = servicio.capitalizar(texto);
-        Assert.assertEquals(fraseEsperada2, resultado);
+        Assert.assertEquals(textoEsperado, resultado);
+        //TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
     }
     
     @Test
-    public void probarMetodoContarCoincidencias() {
-        int fraseEsperada3=1;
-        String frase="2017";
-        String Cadena = "Bienvenidos a la materia de Programación 3 Ciclo II 2017.";
-        int resultado = servicio.contarCoincidencias(Cadena, frase);
-        Assert.assertEquals(fraseEsperada3, resultado);
+    public void pruebaCapitalizar2() {
+        System.out.println("capitalizar prueba 2");
+        String texto = "";
+        String textoEsperado = "";
+        String resultado = servicio.capitalizar(texto);
+        Assert.assertEquals(textoEsperado, resultado);
+        //TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    @Test
+    public void pruebaCapitalizar3() {
+        System.out.println("capitalizar prueba 3");
+        String texto = null;
+        String textoEsperado = null;
+        String resultado = servicio.capitalizar(texto);
+        Assert.assertEquals(textoEsperado, resultado);
+        //TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
     }
     
-
+    @Test
+    public void pruebaContarCoincidencias() {
+        System.out.println("contarCoincidencias prueba 1");
+        String frase = "Bienvenidos a la materia de Programación 3 Ciclo II 2017.";
+        String texto = "2017";
+        int textoEsperado = 1;
+        int resultado = servicio.contarCoincidencias(frase, texto);
+        Assert.assertEquals(textoEsperado, resultado);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    @Test
+    public void pruebaContarCoincidencias2() {
+        System.out.println("contarCoincidencias prueba 2");
+        String frase = "Bienvenidos a la materia de Programación 3 Ciclo II 2017.";
+        String texto = "MA";
+        int textoEsperado = 2;
+        int resultado = servicio.contarCoincidencias(frase, texto);
+        Assert.assertEquals(textoEsperado, resultado);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    @Test
+    public void pruebaContarCoincidencias3() {
+        System.out.println("contarCoincidencias prueba 3");
+        String frase = null;
+        String texto = "bienvenidos";
+        int textoEsperado = 0;
+        int resultado = servicio.contarCoincidencias(frase, texto);
+        Assert.assertEquals(textoEsperado, resultado);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
 }

@@ -4,10 +4,9 @@ import java.io.Serializable;
 import javax.ejb.LocalBean;
 import javax.enterprise.context.Dependent;
 
-
 /**
  *
- * @author jcsantos
+ * @author sandoval_santos
  */
 
 @LocalBean
@@ -19,38 +18,52 @@ public class Utilities implements Serializable{
      * @param texto Cadena de texto que contiene la introducción de un determinado post.
      * @return Las primeras 20 letras del texto recibido.
      */
-    public String getResume(String texto) {
-       char caracter=' ';
-       String frase="";
-        for(int i=0; i<20; i++){
-            caracter=texto.charAt(i);
-            frase+=caracter;
+     public String getResume(String texto) {
+        int tamaño=20;
+        if (texto==null) {
+             return null;
+            }else{
+             
+        char c = ' ';
+        String frase = "";
+            if (texto.length()<20) {
+                tamaño=texto.length();
+            }
+        //for para limitar el tamaño de la cadena de texto
+        for (int i = 0; i < tamaño; i++) {
+            //con charAt me voy a la pocision de la cadena
+            c = texto.charAt(i);
+            //voy concatenando los caracteres para formar la frase limitada
+            frase += c;
+            }
+        
+        return frase;
         }
-         return frase;
     }
+
     /**
-     * Convierte la primera letra de cada palabra a mayúscula y las restantes en minúsculas, ademas elimina los dobles espacios
-     * @param texto Cadena de texto que contiene el título de un determinado post.
-     * @return El texto que se ha recibido con cada palabra capitalizada y sin dobles espacios.
+     *capitalizar es el metodo en el cual elimina los dobles espacios y deja la primera letra de cada palabra mayusculas
+     * @param texto - es el texto el cual queremos capitalizar y quitar dobles espacios
+     * @return - retorna el texto ya capitalizado y sin dobles espacios
      */
     public String capitalizar(String texto) {
         int cont = 0;
         String frase = "";
-        char[] caracteres = texto.toCharArray();
-       
-        for (int i = 0; i < texto.length(); i++) {
-            caracteres[i]=Character.toLowerCase(caracteres[i]);
-            if  (caracteres[i] == ' '){
-            caracteres[i + 1] = Character.toLowerCase(caracteres[i + 1]);
+        if (texto=="") {
+             return "";
             }
-            }
-        
-        for (int i = 0; i < texto.length(); i++) {
+        if (texto==null) {
+             return null;
+            }else{
+            String palabra="";
+        palabra=texto.toLowerCase();
+
+        char[] caracteres = palabra.toCharArray();
+        // for pasando por todas las letras
+        for (int i = 0; i < palabra.length(); i++) {
             //la primera letra es mayuscula
             caracteres[0] = Character.toUpperCase(caracteres[0]);
             // Reemplazamos por mayuscula
-            if (i!=0) {
-            }
             if (caracteres[i] == ' ') {
                 int p = i;
                 cont = 0;
@@ -67,25 +80,30 @@ public class Utilities implements Serializable{
             frase += caracteres[i];
         }
         return frase;
+        }
     }
-    
+
     /**
-     * Cuenta la cantidad de veces que se repite una palabra en una cadena de texto
-     * @param frase cadena de texto que contiene la frase a buscar.
-     * @param cadena cadena de texto donde se buscaran las coincidencias.
-     * @return La cantidad de coincidencias de la frase en el texto recibido.
+     *metodo para contar las coincidencias de un palabra que el usuario pone en una frase que el usuario selecciona 
+     * @param frase - es la frase completa en la cual buscaremos
+     * @param texto - es el texto buscado en la frase
+     * @return - retorna el numero de veces que encontro el texto buscado en la frase
      */
-    public int contarCoincidencias(String Cadena, String frase) {   
-    int i = 0,contador = 0;
-    while (i != -1){
-    i = Cadena.indexOf(frase,i);
-    if (i != -1){
-    i++;
-    contador++;
-}
-}
-return contador;
-}
+    public int contarCoincidencias(String frase, String texto) {
+
+        // Contador de ocurrencias 
+        int contador = 0;
+        if (frase==null) {
+            return contador;
+        }
+        while (frase.indexOf(texto) > -1) {
+            frase = frase.substring(frase.indexOf(texto) + texto.length(), frase.length());
+            contador++;
+        }
+
+        return contador;
+
+    }
 }
 
     

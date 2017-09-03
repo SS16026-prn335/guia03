@@ -97,7 +97,7 @@ public class Utilities implements Serializable{
             return contador;
         }
         frase=frase.toLower();
-        texto.texto.toLower();
+        texto=texto.toLower();
         while (frase.indexOf(texto) > -1) {
             frase = frase.substring(frase.indexOf(texto) + texto.length(), frase.length());
             contador++;
